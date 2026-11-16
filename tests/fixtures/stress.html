@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stress — 150+ enemies</title>
+  <!--
+    Load test (PROJECT.md §4): more candidates than the 150-enemy cap, plus
+    images served from a DIFFERENT origin (http://127.0.0.1:5180) so they are
+    genuinely CORS-tainted and exercise the armor path. Start the image server
+    first: node tests/harness/xorigin-server.mjs
+  -->
+  <style>
+    body { margin: 0; font: 13px system-ui, sans-serif; background: #f6f3ee; }
+    header { padding: 8px 16px; background: #fff; border-bottom: 1px solid #ddd; }
+    #wall { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px; }
+    #wall a { padding: 2px 4px; color: #0b57d0; }
+    #wall img { width: 64px; height: 48px; object-fit: cover; }
+    #wall h3 { margin: 0; font-size: 15px; width: 160px; }
+    #wall button { padding: 4px 8px; }
+  </style>
+</head>
+<body>
+  <header><a href="/"><img class="logo" alt="Stress logo" width="120" height="32" src="http://127.0.0.1:5180/logo.png" /></a></header>
+  <div id="wall"></div>
+  <script>
+    const wall = document.getElementById('wall');
+    const add = (html) => wall.insertAdjacentHTML('beforeend', html);
+    for (let i = 0; i < 24; i++) add(`<img alt="x${i}" src="http://127.0.0.1:5180/img${i}.png">`);
+    for (let i = 0; i < 20; i++) add(`<h3>Headline number ${i}</h3>`);
+    for (let i = 0; i < 30; i++) add(`<button>Action ${i}</button>`);
+    for (let i = 0; i < 160; i++) add(`<a href="#l${i}">link ${i}</a>`);
+  </script>
+  <script type="module" src="/harness.ts"></script>
+</body>
+</html>

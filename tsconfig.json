@@ -1,0 +1,8 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noUnusedLocals": true
+  },
+  "include": [".wxt/wxt.d.ts", "src", "tests/fixtures", "wxt.config.ts"]
+}

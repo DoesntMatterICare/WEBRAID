@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:site_name" content="The Daily Byte" />
+  <title>The Daily Byte — News for the Terminally Online</title>
+  <style>
+    body { margin: 0; font-family: Georgia, serif; background: #f6f3ee; color: #1d1d1f; }
+    header { display: flex; align-items: center; gap: 24px; padding: 14px 32px; background: #fff; border-bottom: 1px solid #ddd; }
+    header .logo img { display: block; }
+    nav a { margin-right: 18px; color: #0b57d0; text-decoration: none; font: 600 15px system-ui, sans-serif; }
+    main { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; padding: 24px 32px; max-width: 1200px; }
+    h1 { font-size: 40px; margin: 0 0 12px; }
+    h2 { font-size: 22px; margin: 18px 0 8px; }
+    .hero { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+    .cards img { width: 100%; height: 90px; object-fit: cover; border-radius: 6px; }
+    aside a { display: block; margin: 8px 0; color: #0b57d0; font: 15px system-ui, sans-serif; }
+    #raid { position: fixed; right: 20px; bottom: 20px; padding: 10px 16px; background: #ff2bd6; color: #0d0221; border: 0; border-radius: 8px; font: 700 14px monospace; cursor: pointer; }
+    .tall { height: 1200px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/"><img alt="The Daily Byte" width="150" height="40" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='40'%3E%3Crect width='150' height='40' rx='6' fill='%23111'/%3E%3Ctext x='75' y='27' font-family='Georgia' font-size='18' fill='%23fff' text-anchor='middle'%3EDaily Byte%3C/text%3E%3C/svg%3E" /></a>
+    <nav>
+      <a href="#world">World</a><a href="#tech">Tech</a><a href="#science">Science</a><a href="#games">Games</a><a href="#opinion">Opinion</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h1>Local Man Opens 47 Browser Tabs, Closes None</h1>
+      <img class="hero" alt="Tabs" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='300'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23ff7e5f'/%3E%3Cstop offset='1' stop-color='%23feb47b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='300' fill='url(%23g)'/%3E%3Ccircle cx='620' cy='90' r='50' fill='%23fff8'/%3E%3C/svg%3E" />
+      <p>Experts say the tabs are "load-bearing". Read the <a href="#full">full story</a> or check the <a href="#live">live updates</a>.</p>
+      <h2>Opinion: Cookies Were Better When You Could Eat Them</h2>
+      <p>A thoughtful essay on consent banners, by someone who clicked "Accept all" 9,000 times.</p>
+      <div class="cards">
+        <img alt="Cats" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='90'%3E%3Crect width='200' height='90' fill='%234facfe'/%3E%3C/svg%3E" />
+        <img alt="Space" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='90'%3E%3Crect width='200' height='90' fill='%2343e97b'/%3E%3C/svg%3E" />
+        <img alt="Food" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='90'%3E%3Crect width='200' height='90' fill='%23fa709a'/%3E%3C/svg%3E" />
+      </div>
+      <h2>Scientists Confirm Monday Is Still Happening</h2>
+    </section>
+    <aside>
+      <h3>Trending</h3>
+      <a href="#a">Why your Wi-Fi hates you</a>
+      <a href="#b">10 keyboards ranked by clackiness</a>
+      <a href="#c">The CAPTCHA that became sentient</a>
+      <a href="#d">Is your fridge on social media?</a>
+      <a href="#e">How to exit Vim: a survivor's guide</a>
+      <a href="#f">Subscribe to our newsletter (please)</a>
+    </aside>
+  </main>
+  <div class="tall"></div>
+  <button id="raid">RAID (Alt+R)</button>
+  <script type="module" src="/harness.ts"></script>
+</body>
+</html>

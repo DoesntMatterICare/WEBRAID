@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feedr — social media fixture</title>
+  <!--
+    Reproduces the markup patterns that break naive scanners on social sites:
+    - live <video> players (YouTube / TikTok)        -> must stream inside the enemy card
+    - thumbnail grid with overlay badges (YouTube)    -> img under transparent scrims
+    - CSS background-image photo + opacity:0 <img>    (X / Twitter)
+    - transparent click-catcher div over the image    (Instagram)
+    - post rendered inside an open shadow root        (Reddit "shreddit-post")
+    - cross-origin style <iframe> embed
+  -->
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.4 system-ui, sans-serif; background: #0f0f10; color: #f1f1f1; }
+    header { display: flex; align-items: center; gap: 16px; padding: 10px 20px; background: #181818; }
+    header a { color: #aaa; text-decoration: none; font-weight: 600; }
+    .logo { font: 800 20px system-ui; color: #fff !important; }
+    main { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; padding: 16px 20px; }
+    .player { position: relative; border-radius: 12px; overflow: hidden; background: #000; }
+    .player video { display: block; width: 100%; aspect-ratio: 16 / 9; }
+    .player .scrim { position: absolute; inset: auto 0 0 0; height: 60px; background: linear-gradient(transparent, rgba(0,0,0,.6)); }
+    h1 { font-size: 20px; margin: 10px 0 4px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .thumb { position: relative; display: block; border-radius: 10px; overflow: hidden; }
+    .thumb img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .thumb .dur { position: absolute; right: 6px; bottom: 6px; background: rgba(0,0,0,.8); padding: 1px 4px; border-radius: 4px; font-size: 11px; }
+    .side { display: flex; flex-direction: column; gap: 14px; }
+    .tweet { background: #16181c; border: 1px solid #2f3336; border-radius: 14px; padding: 10px; }
+    .tweet .media { position: relative; height: 150px; border-radius: 12px; background-size: cover; background-position: center; }
+    .tweet .media img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+    .tweet a { color: #1d9bf0; }
+    .insta { position: relative; width: 180px; }
+    .insta img { display: block; width: 180px; height: 180px; object-fit: cover; border-radius: 8px; }
+    .insta .catcher { position: absolute; inset: 0; }
+    .row { display: flex; gap: 14px; }
+    .tiktok { width: 130px; height: 200px; border-radius: 12px; overflow: hidden; background: #000; }
+    .tiktok video { width: 100%; height: 100%; object-fit: cover; }
+    iframe { border: 0; border-radius: 10px; width: 100%; height: 120px; background: #222; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">Feedr</a>
+    <a href="#home">Home</a><a href="#shorts">Shorts</a><a href="#subs">Subscriptions</a><a href="#you">You</a>
+  </header>
+  <main>
+    <section>
+      <div class="player"><video id="main-video" autoplay muted loop playsinline></video><div class="scrim"></div></div>
+      <h1>I let my cat run a startup for 30 days</h1>
+      <a href="#channel">Whiskers Ventures</a>
+      <div class="grid">
+        <a class="thumb" href="#v1"><img alt="Speedrun" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23e63946'/%3E%3Ctext x='20' y='110' font-size='60' font-family='Arial' font-weight='900' fill='white'%3EWR!%3C/text%3E%3C/svg%3E" /><span class="dur">12:04</span></a>
+        <a class="thumb" href="#v2"><img alt="Cooking" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23ffb703'/%3E%3Ccircle cx='160' cy='90' r='60' fill='%23fb8500'/%3E%3C/svg%3E" /><span class="dur">8:41</span></a>
+        <a class="thumb" href="#v3"><img alt="Tech" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='320' height='180' fill='%23219ebc'/%3E%3Crect x='90' y='40' width='140' height='100' rx='10' fill='%238ecae6'/%3E%3C/svg%3E" /><span class="dur">21:17</span></a>
+      </div>
+    </section>
+    <aside class="side">
+      <div class="tweet">
+        <a href="#user">@internetfan</a> this site attacked me
+        <div class="media" id="x-media"><img alt="" src="" id="x-ghost" /></div>
+      </div>
+      <div class="row">
+        <div class="insta"><img alt="Sunset post" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23833ab4'/%3E%3Cstop offset='1' stop-color='%23fcb045'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' fill='url(%23g)'/%3E%3C/svg%3E" /><div class="catcher"></div></div>
+        <div class="tiktok"><video id="short-video" autoplay muted loop playsinline></video></div>
+      </div>
+      <reddit-post id="rp"></reddit-post>
+      <iframe title="embed" srcdoc="<body style='margin:0;background:#300;color:#fff;font:16px system-ui;display:grid;place-items:center;height:100vh'>Embedded player</body>"></iframe>
+    </aside>
+  </main>
+  <button id="raid" style="position:fixed;right:16px;bottom:16px;padding:8px 12px;background:#ff3131;color:#fff;border:0;border-radius:8px;font:700 13px monospace">RAID (Alt+R)</button>
+  <script>
+    // Live "video" sources without any media files: animated canvases streamed into <video>.
+    function liveVideo(id, w, h, draw) {
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const g = c.getContext('2d');
+      let t = 0;
+      (function frame() { t += 1 / 30; draw(g, w, h, t); setTimeout(frame, 33); })();
+      document.getElementById(id).srcObject = c.captureStream(30);
+    }
+    liveVideo('main-video', 640, 360, (g, w, h, t) => {
+      g.fillStyle = `hsl(${(t * 40) % 360} 70% 45%)`; g.fillRect(0, 0, w, h);
+      g.fillStyle = '#fff'; g.beginPath(); g.arc(w / 2 + Math.sin(t * 2) * 200, h / 2, 50, 0, 7); g.fill();
+      g.font = '900 40px Arial'; g.fillText('LIVE ' + t.toFixed(1), 20, 60);
+    });
+    liveVideo('short-video', 180, 320, (g, w, h, t) => {
+      g.fillStyle = '#111'; g.fillRect(0, 0, w, h);
+      g.fillStyle = '#25f4ee'; g.fillRect(20, 160 + Math.sin(t * 4) * 100, 60, 30);
+      g.fillStyle = '#fe2c55'; g.fillRect(100, 160 + Math.cos(t * 4) * 100, 60, 30);
+    });
+
+    // X/Twitter-style: photo is a CSS background, the <img> on top is invisible.
+    const pc = document.createElement('canvas'); pc.width = 300; pc.height = 150;
+    const pg = pc.getContext('2d'); pg.fillStyle = '#1d9bf0'; pg.fillRect(0, 0, 300, 150);
+    pg.fillStyle = '#fff'; pg.font = '900 36px Arial'; pg.fillText('PHOTO', 80, 90);
+    const photo = pc.toDataURL('image/png');
+    document.getElementById('x-media').style.backgroundImage = `url("${photo}")`;
+    document.getElementById('x-ghost').src = photo;
+
+    // Reddit-style web component with an open shadow root.
+    customElements.define('reddit-post', class extends HTMLElement {
+      connectedCallback() {
+        const root = this.attachShadow({ mode: 'open' });
+        root.innerHTML = `<style>:host{display:block;background:#1a1a1b;border:1px solid #343536;border-radius:10px;padding:10px}
+          h3{margin:0 0 8px;font:700 15px system-ui;color:#d7dadc} img{display:block;width:100%;height:90px;object-fit:cover;border-radius:6px}
+          a{color:#4fbcff;font-size:12px}</style>
+          <h3>TIL websites can fight back</h3>
+          <img alt="meme" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='90'%3E%3Crect width='300' height='90' fill='%23ff4500'/%3E%3Ctext x='20' y='60' font-size='40' font-family='Arial' font-weight='900' fill='white'%3Er/raid%3C/text%3E%3C/svg%3E" />
+          <a href="#comments">482 comments</a>`;
+      }
+    });
+  </script>
+  <script type="module" src="/harness.ts"></script>
+</body>
+</html>

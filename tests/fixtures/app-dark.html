@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:site_name" content="Notebook" />
+  <title>Notebook — dark app fixture</title>
+  <!--
+    Dark, app-style page modelled on tools like NotebookLM: almost everything
+    is buttons and divs (few links/images), with an SVG logo linking home, an
+    ad slot and an embedded iframe. Used to check the dark theme, turrets,
+    toxic enemies and the boss finder.
+  -->
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.45 "Google Sans", system-ui, sans-serif; background: #131314; color: #e3e3e3; }
+    header { display: flex; align-items: center; gap: 12px; padding: 12px 20px; }
+    header a.home { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 600; font-size: 18px; }
+    header .spacer { flex: 1; }
+    button, [role="button"] { font: 500 14px system-ui; color: #e3e3e3; background: #1e1f20; border: 1px solid #3c4043; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+    .cols { display: grid; grid-template-columns: 300px 1fr 340px; gap: 14px; padding: 0 14px 14px; height: calc(100vh - 64px); }
+    .panel { background: #1e1f20; border-radius: 16px; padding: 14px; overflow: hidden; }
+    h2 { font-size: 15px; margin: 0 0 12px; font-weight: 500; }
+    h1 { font-size: 26px; font-weight: 500; margin: 8px 0; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .src { display: flex; align-items: center; gap: 8px; padding: 8px 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .tile { padding: 14px; border-radius: 14px; background: #282a2c; }
+    .ad-slot { margin-top: 12px; height: 110px; border-radius: 12px; background: #2a2032; display: grid; place-items: center; color: #c9a0ff; }
+    iframe { border: 0; width: 100%; height: 110px; border-radius: 12px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="home" href="/"><svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#8ab4f8"/><path d="M9 21l7-12 7 12z" fill="#131314"/></svg>Notebook</a>
+    <span class="spacer"></span>
+    <button>+ Create notebook</button><button>Share</button><button>Settings</button>
+  </header>
+  <div class="cols">
+    <section class="panel">
+      <h2>Sources</h2>
+      <div class="chips"><button>+ Add sources</button><button>Discover</button></div>
+      <div class="chips"><span role="button">Web</span><span role="button">Fast Research</span></div>
+      <div class="src">&#x1F4C4; DBMS_Schema_Answers.pdf</div>
+      <div class="src">&#x1F4C4; Lecture_Notes_Week3.pdf</div>
+      <div class="ad-slot" id="ad-sidebar" data-ad-slot="123">Sponsored: Learn SQL in 3 days</div>
+    </section>
+    <section class="panel">
+      <h1>DBMS Schema Style — All Answers</h1>
+      <p>The provided materials function as a comprehensive study guide and question bank for a Database Management Systems course, covering schema refinement, transaction management, and indexing techniques. Core concepts include functional dependencies up to fifth normal form and the operational mechanics of relational database design.</p>
+      <div class="chips"><button>Save to note</button><button>Copy</button><button>Good response</button></div>
+      <div class="grid">
+        <div class="tile" role="button">How does normalization prevent update anomalies?</div>
+        <div class="tile" role="button">What is the difference between conflict and view serializability?</div>
+      </div>
+      <iframe title="embed" srcdoc="<body style='margin:0;background:#2b0a0a;color:#fff;font:15px system-ui;display:grid;place-items:center;height:100vh'>Embedded player</body>"></iframe>
+    </section>
+    <section class="panel">
+      <h2>Studio</h2>
+      <div class="grid">
+        <button>Audio Overview</button><button>Slide Deck</button><button>Video Overview</button><button>Mind Map</button>
+        <button>Reports</button><button>Flashcards</button><button>Quiz</button><button>Infographic</button>
+      </div>
+      <p style="margin-top:14px;color:#9aa0a6">Studio output will be saved here. After adding sources, click to add Audio Overview, study guide, mind map and more.</p>
+      <a href="#more" style="color:#8ab4f8">Learn more about Studio</a>
+    </section>
+  </div>
+  <script type="module" src="/harness.ts"></script>
+</body>
+</html>

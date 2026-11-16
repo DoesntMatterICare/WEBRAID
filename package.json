@@ -1,0 +1,21 @@
+{
+  "name": "webraid",
+  "description": "Every website is a boss fight.",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "compile": "tsc --noEmit",
+    "icons": "node scripts/make-icons.mjs",
+    "postinstall": "wxt prepare",
+    "harness": "vite --config tests/harness/vite.config.ts"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "web-ext": "^10.8.0",
+    "wxt": "^0.21.5"
+  }
+}
